@@ -28,7 +28,7 @@ const datos = [
     }
 ];
 
-const desarrolladoresJavascript = (arrayDeDatos) => {
+const desarrolladoresJavascript = (arrayDeDatos) =>{
     listaDesarrolladoresJS = [];
     for (let index = 0; index < arrayDeDatos.length; index++){
         if (arrayDeDatos[index].habilidades.includes('JavaScript')){
