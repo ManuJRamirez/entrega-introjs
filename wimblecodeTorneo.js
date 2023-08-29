@@ -1,4 +1,27 @@
 const puntuaciones = [0, 15, 30, 40];
+const jugadores = ['Alberto C', 'David J', 'Javier M', 'Edu Aguilar'];
+
+const createPlayOff = (arrayJugadores) =>{
+    const randomJugadores = [];
+    const obtenerRandom = () => Math.floor(Math.random() * jugadores.length);
+    const checkrepeticion = (listaJugadores, jugadoresPlayOff) => jugadoresPlayOff.includes(listaJugadores);
+    
+    while(randomJugadores.length < 4){
+        const randomIndex = obtenerRandom();
+        if (!checkrepeticion(arrayJugadores[randomIndex], randomJugadores)){
+            randomJugadores.push(arrayJugadores[randomIndex]);
+        }
+    }
+    const partido1 = [randomJugadores[0],randomJugadores[1]];
+    
+    const partido2 = [randomJugadores[2],randomJugadores[3]];
+    
+    return {
+        partido1,
+        partido2,
+    }
+}
+
 
 const createMatch = (j1, j2) => {
     let jugador1 = {
@@ -13,7 +36,14 @@ const createMatch = (j1, j2) => {
         rondasGanadas: 0,
         juegosGanados: 0,
     };
-     
+    
+    const randomMatch = () => {
+        while(getWinner() === 'noWinner'){
+            const randomPoint = Math.floor(Math.random() * 2) + 1;
+            pointWonBy(randomPoint);
+        }
+    }
+    
     const pointWonBy = (value) => {
         if(value === 1){
             jugador1.puntuacion +=1;
@@ -97,74 +127,17 @@ const createMatch = (j1, j2) => {
         getGameScore,
         getMatchScore,
         getWinner,
+        randomMatch,
     };
 }
 
-
-
-const game = createMatch('Alberto C', 'David J');
-// Cuando puntua el 1º judagor lo registro de este modo
-game.pointWonBy(1); // Player 1 scores a point
-// Cuando puntua el 2º judagor lo registro de este modo
-game.pointWonBy(2); // Player 1 scores a point
-// Quiero poder ver como va la ronda actual en todo momento
-console.log(game.getCurrentRoundScore()); // Output: Alberto C 15-15 David J
-game.pointWonBy(1); // Player 1 scores a point
-console.log(game.getCurrentRoundScore()); // Output: Alberto C 30-15 David J
-game.pointWonBy(2); // Player 2 scores a point
-console.log(game.getCurrentRoundScore()); // Output: Alberto C 30-30 David J
-game.pointWonBy(1); // Player 1 scores a point
-console.log(game.getCurrentRoundScore()); // Output: Alberto C 40-30 David J
-game.pointWonBy(2); // Deuce
-console.log(game.getCurrentRoundScore()); // Output: Deuce
-game.pointWonBy(1); // Player 1 wins the game
-console.log(game.getCurrentRoundScore()); // Output: "Advantage Alberto 4C"
-game.pointWonBy(2); // Player 2 wins the game
-console.log(game.getCurrentRoundScore()); // Output: "Deuce"
-game.pointWonBy(2); // Player 2 wins the game
-console.log(game.getCurrentRoundScore()); // Output: "Advantage David J"
-game.pointWonBy(2); // Player 2 wins the game
-// Quiero poder ver como va la puntuación de un juego
-console.log(game.getGameScore()); // Output: "Alberto C 0\nDavid J 1"
-// El primer round es para David le quedan 3 para ganar un juego
-
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-// David gana 2º ronda
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-// David gana 3º ronda
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-// David gana 4º ronda
-// Primer juego ganado
-console.log(game.getMatchScore()); // Output: "Alberto C 0\nDavid J 1"
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-// gana ronda 1º
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-// gana ronda 2º
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-// gana ronda 3º
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-game.pointWonBy(2); // Player 2 wins the game
-// gana ronda 4º
-// Método para ver los juegos de cada jugador
-console.log(game.getMatchScore()); // Output: "Alberto C 0\nDavid J 2";
-console.log(game.getWinner()); // Output: "David J"
+torneo = (createPlayOff(jugadores));
+const game1 = createMatch(torneo.partido1[0], torneo.partido1[1]);
+game1.randomMatch();
+console.log(game1.getWinner());
+const game2 = createMatch(torneo.partido2[0], torneo.partido2[1]);
+game2.randomMatch();
+console.log(game2.getWinner());
+const final = createMatch(game1.getWinner(), game2.getWinner());
+final.randomMatch();
+console.log(final.getWinner());
