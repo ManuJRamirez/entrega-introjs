@@ -1,4 +1,5 @@
-import * createMatch from "./wimblecode";
+import {createMatch} from './wimblecode.js';
+
 // Ejemplo de software
 const game = createMatch('Alberto C', 'David J');
 // Cuando puntua el 1º judagor lo registro de este modo

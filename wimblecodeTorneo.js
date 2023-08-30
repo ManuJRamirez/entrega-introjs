@@ -131,13 +131,17 @@ const createMatch = (j1, j2) => {
     };
 }
 
-torneo = (createPlayOff(jugadores));
-const game1 = createMatch(torneo.partido1[0], torneo.partido1[1]);
-game1.randomMatch();
-console.log(game1.getWinner());
-const game2 = createMatch(torneo.partido2[0], torneo.partido2[1]);
-game2.randomMatch();
-console.log(game2.getWinner());
-const final = createMatch(game1.getWinner(), game2.getWinner());
-final.randomMatch();
-console.log(final.getWinner());
+const runTorneo = () => {
+    torneo = (createPlayOff(jugadores));
+    const game1 = createMatch(torneo.partido1[0], torneo.partido1[1]);
+    game1.randomMatch();
+    console.log(game1.getWinner());
+    const game2 = createMatch(torneo.partido2[0], torneo.partido2[1]);
+    game2.randomMatch();
+    console.log(game2.getWinner());
+    const final = createMatch(game1.getWinner(), game2.getWinner());
+    final.randomMatch();
+    console.log(final.getWinner());
+}
+
+runTorneo();

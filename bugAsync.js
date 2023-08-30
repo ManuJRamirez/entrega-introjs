@@ -1,4 +1,5 @@
 // Este programa simula una llamada asincrónica para obtener un usuario
+
 function obtenerUsuario(id) {
     let usuario = [];
 

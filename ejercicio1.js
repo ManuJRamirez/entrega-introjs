@@ -5,7 +5,8 @@ let alumno = {
     buscandoTrabajo: true,
     redSocial: [
         {
-            github: 'https://github.com/ManuJRamirez',
+            nombre: 'github',
+            link: 'https://github.com/ManuJRamirez',
         }
     ],
 };
