@@ -42,7 +42,7 @@ const createMatch = (j1, j2) => {
             const randomPoint = Math.floor(Math.random() * 2) + 1;
             pointWonBy(randomPoint);
         }
-    }
+    };
     
     const pointWonBy = (value) => {
         if(value === 1){
