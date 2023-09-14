@@ -1,15 +1,15 @@
 // Este programa simula una llamada asincrónica para obtener un usuario
 
-function obtenerUsuario(id) {
-    let usuario = [];
-
+function obtenerUsuario(id, cb) {
+    let usuario;
     setTimeout(() => {
         if (id === 1) {
-            usuario.push({id: 1, nombre: 'John Doe'});
+            usuario = { id: 1, nombre: 'John Doe' };
+            cb(null, usuario);
         }
     }, 2000);
-    return usuario;
-}
+};
 
-const usuario = obtenerUsuario(1);
-console.log(usuario);
+obtenerUsuario(1,(error, usuario) => {
+    console.log(usuario);
+});
