@@ -115,10 +115,12 @@ const createMatch = (j1, j2) => {
     const reinicioPuntuacion = () => {
         jugador1.puntuacion = 0;
         jugador2.puntuacion = 0;
+        console.log(`RONDAS: ${jugador1.nombre} ${jugador1.rondasGanadas}-${jugador2.rondasGanadas} ${jugador2.nombre}`);
     };
     const reinicioRondas = () => {
         jugador1.rondasGanadas = 0;
         jugador2.rondasGanadas = 0;
+        console.log(`JUEGOS: ${jugador1.nombre} ${jugador1.juegosGanados}-${jugador2.juegosGanados} ${jugador2.nombre}`);
     };
     
     return {
@@ -135,13 +137,13 @@ const runTorneo = () => {
     torneo = (createPlayOff(jugadores));
     const game1 = createMatch(torneo.partido1[0], torneo.partido1[1]);
     game1.randomMatch();
-    console.log(game1.getWinner());
+    console.log('Ganador del partido: ',game1.getWinner());
     const game2 = createMatch(torneo.partido2[0], torneo.partido2[1]);
     game2.randomMatch();
-    console.log(game2.getWinner());
+    console.log('Ganador del partido: ',game2.getWinner());
     const final = createMatch(game1.getWinner(), game2.getWinner());
     final.randomMatch();
-    console.log(final.getWinner());
+    console.log("Ganador del torneo: ", final.getWinner());
 }
 
 runTorneo();
